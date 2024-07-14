@@ -8,10 +8,12 @@ const cartSchema = new mongoose.Schema({
             cartItem: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Product'
-            }
+            },
+            quantity: { type: Number, default: 1 }
         }
+     
     ],
-    quantity: { type: Number, default: 1 }
+   
 }, {
     timestamps: true 
 });
@@ -22,9 +24,9 @@ function validate(cart){
     const schema = Joi.object({
         userId: Joi.objectId().required(),
         product: Joi.array().items(Joi.object().keys({
-            cartItem: Joi.objectId()
+            cartItem: Joi.objectId(),
+            quantity: Joi.number()
         })),
-        quantity: Joi.number()
     })
 return schema.validate(cart)
 }

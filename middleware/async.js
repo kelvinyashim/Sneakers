@@ -4,8 +4,6 @@ module.exports = function(handler){
             await handler(req,res);
         } catch (error) {
             next(error)
-            
         }
     }
-
 }

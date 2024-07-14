@@ -36,7 +36,7 @@ module.exports = {
         if(!isValid) return res.status(400).json('Invalid details');
         try {
             const token = existingUser.generateAuthToken();
-            res.status(200).json({ user:_.pick(existingUser,['name', 'email', 'location']),  token: token}); 
+            res.status(200).json({msg: "Logged in ", token: token}); 
         } catch (error) {
             console.log(error);
             res.status(500).json('Something went wrong'); 

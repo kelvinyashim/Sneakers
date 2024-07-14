@@ -19,12 +19,14 @@ module.exports = {
         }
     },
 
-    getAllProducts: async (req,res)=>{ //remember to fix this 
+    getAllProducts: asyncMiddleware(async (req,res)=>{
             const products = await Product.find().sort({createdAt: 1});
             res.status(200).json(products);
-    },
+        
+    }),
 
     getProduct: async (req,res)=>{
+
         try {
             const product = await Product.findById(req.params.id).select('-__v -createdAt -updatedAt');
              if (!product) return res.status(404).json({ error: 'Product not found' });
